@@ -91,5 +91,7 @@
     ?>
 
   </body>
+  <p style='font-size: 11px; text-align: center;'> 배승옥 코튼 갤러리</p>
+  <p style='font-size: 11px; text-align: center;'> 주소 : 전북 전주시 완산구 유연로 348-4 <span style='margin-left: 40px'></span> 전화번호 : 063-283-1191</p>
 </html>
 
