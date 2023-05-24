@@ -39,26 +39,27 @@
       ?>
     </div>
     <ol>
-      <li><a href="product_bedding_home.php">이불</a>
+      <li><a href="product_pillow_cover_home.php">PILLOW COVER</a></li>
+      <li><a href="product_seat_cushion_home.php">SEAT CUSHION</a>
         <ol>
-          <li><a href="product_bedding_fabric1.php">fabric별</a></li>
-          <li><a href="product_bedding_small.php">size별</a></li>
-            <ol>
-                <li><a href="product_bedding_small.php">small</a></li>
-                <li><a href="product_bedding_medium.php">medium</a></li>
-                <li><a href="product_bedding_large.php">large</a></li>
+            <li><a href="product_seat_cushion_C-501.php">BY FABRIC</a></li>
+                <ol>
+                    <li><a href="product_seat_cushion_C-501.php">C-501</a></li>
+                    <li><a href="product_seat_cushion_C-502.php">C-502</a></li>
+                    <li><a href="product_seat_cushion_C-503.php">C-503</a></li>
                 </ol>
-            </ol>
-      </li>
-      <li><a href="product_pillow_home.php">베개</a></li>
+            <li><a href="product_seat_cushion_small.php">BY SIZE</a></li>
+        </ol>
+        </li>
+      <li><a href="product_etc.php">ETC</a></li>
     </ol>
 
-    <h2>이불 - Large 상품</h2>
+    <h2>SEAT CUSHION COVER (C-501)</h2>
 
     <?php
       $conn = mysqli_connect("localhost", "root", "11111111", "stores");
 
-      $sql = "SELECT * FROM products where form = '이불' and size = 'large'";
+      $sql = "SELECT * FROM products where form = 'seat cushion cover' and fabric_id = 'C-501'";
       $result = mysqli_query($conn, $sql);
 
       echo "<table>";
@@ -91,105 +92,3 @@
   </body>
 </html>
 
-  body{
-    margin: 0 80px;
-  }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  th, td {
-    text-align: left;
-    padding: 12px;
-  }
-  th {
-    background-color: #ddd;
-  }
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  tr:hover {
-    background-color: #ddd;
-  }
-  .product-image {
-    width: 200px;
-    height: 200px;
-    object-fit: contain;
-  }
-  .product-name {
-    font-weight: bold;
-  }
-  .product-price {
-    color: #f60;
-    font-size: 16px;
-    font-weight: bold;
-  }
-  .btn {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .btn:hover {
-    background-color: #3e8e41;
-  }
-
-  .btn-login, .btn-join {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .btn-login:hover, .btn-join:hover {
-    background-color: #3e8e41;
-  }
-
-  ol {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-  }
-
-  ol li {
-    margin: 10px 0;
-  }
-
-  ol a {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: black;
-    font-size: 20px;
-    font-weight: bold;
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-  }
-
-  ol a:hover {
-    background-color: lightgray;
-    color: white;
-  }
-
-  ol ol {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    margin-left: 20px;
-  }
-
-  ol ol a {
-    font-size: 16px;
-    font-weight: normal;
-  }

@@ -27,38 +27,34 @@
 
             echo "<a href='logout.php' class='btn-login'>로그아웃</a>";
             echo "<span style='margin-left: 10px'></span>";
-            echo "<a href='cart.php' class='btn'>장바구니</a>";        
+            echo "<a href='cart.php' class='btn'>장바구니</a>";
+            echo "<span style='margin-left: 10px'></span>";
+            echo "<a href='purchase_check.php' class='btn'>주문확인</a>";        
         }
         else {
             echo "<a href='login.php' class='btn-login'>로그인</a>";
             echo "<span style='margin-left: 10px'></span>";
             echo "<a href='join.php' class='btn-join'>회원가입</a>";
-            echo "<span style='margin-left: 10px'></span>";
-            echo "<a href='purchase_check.php' class='btn'>주문확인</a>";
         }
       ?>
     </div>
     <ol>
-      <li><a href="product_bedding_home.php">이불</a>
+      <li><a href="product_pillow_cover_home.php">PILLOW COVER</a></li>
+      <li><a href="product_seat_cushion_home.php">SEAT CUSHION</a>
         <ol>
-          <li><a href="product_bedding_fabric1.php">fabric별</a></li>
-          <li><a href="product_bedding_small.php">size별</a></li>
-            <ol>
-                <li><a href="product_bedding_small.php">small</a></li>
-                <li><a href="product_bedding_medium.php">medium</a></li>
-                <li><a href="product_bedding_large.php">large</a></li>
-                </ol>
-            </ol>
-      </li>
-      <li><a href="product_pillow_home.php">베개</a></li>
+            <li><a href="product_seat_cushion_C-501.php">BY FABRIC</a></li>
+            <li><a href="product_seat_cushion_small.php">BY SIZE</a></li>
+        </ol>
+        </li>
+      <li><a href="product_etc.php">ETC</a></li>
     </ol>
 
-    <h2>이불 - Small 상품</h2>
+    <h2>SEAT CUSHION COVER 전체 상품</h2>
 
     <?php
       $conn = mysqli_connect("localhost", "root", "11111111", "stores");
 
-      $sql = "SELECT * FROM products where form = '이불' and size = 'small'";
+      $sql = "SELECT * FROM products where form = 'seat cushion cover'";
       $result = mysqli_query($conn, $sql);
 
       echo "<table>";
@@ -90,3 +86,4 @@
 
   </body>
 </html>
+

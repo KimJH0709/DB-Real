@@ -92,8 +92,8 @@
             echo "</table>";
 
             echo "<p style='font-size: 24px; text-align: right;'> 총 합계 금액: ".$total_price."원</p>";
-
-            echo "<p style='font-size: 24px; text-align: center;'> 입금계좌 : 00  은행 계좌번호 : 000000000000</p>";
+            echo "<p style='font-size: 24px; text-align: center;'> 계정 이름과 동일한 입금자명을 사용해주세요.</p>";
+            echo "<p style='font-size: 24px; text-align: center;'> 입금계좌 : 00 은행   계좌번호 : 0000-00-000000</p>";
 
             echo "<form method='post' action='purchase_process.php'>";
             echo "<input type='hidden' name='ID' value='$ID'>";

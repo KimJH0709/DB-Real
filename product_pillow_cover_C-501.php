@@ -39,26 +39,27 @@
       ?>
     </div>
     <ol>
-      <li><a href="product_bedding_home.php">이불</a></li>
-      <li><a href="product_pillow_home.php">베개</a></li>
+      <li><a href="product_pillow_cover_home.php">PILLOW COVER</a>
         <ol>
-          <li><a href="product_pillow_fabric1.php">fabric별</a></li>
-          <li><a href="product_pillow_small.php">size별</a></li>
+          <li><a href="product_pillow_cover_C-501.php">BY FABRIC</a></li>
             <ol>
-              <li><a href="product_pillow_small.php">small</a></li>
-              <li><a href="product_pillow_medium.php">medium</a></li>
-              <li><a href="product_pillow_large.php">large</a></li>
+              <li><a href="product_pillow_cover_C-501.php">C-501</a></li>
+              <li><a href="product_pillow_cover_C-502.php">C-502</a></li>
+              <li><a href="product_pillow_cover_C-503.php">C-503</a></li>
             </ol>
+          <li><a href="product_pillow_cover_small.php">BY SIZE</a></li>
         </ol>
+      </li>
+      <li><a href="product_seat_cushion_home.php">SEAT CUSHION</a></li>
+      <li><a href="product_etc.php">ETC</a></li>
     </ol>
 
-
-    <h2>베개 - Small 상품</h2>
+    <h2>PILLOW COVER (C-501)</h2>
 
     <?php
       $conn = mysqli_connect("localhost", "root", "11111111", "stores");
 
-      $sql = "SELECT * FROM products where form = '베개' and size = 'small'";
+      $sql = "SELECT * FROM products where form = 'pillow cover' and fabric_id = 'C-501'";
       $result = mysqli_query($conn, $sql);
 
       echo "<table>";

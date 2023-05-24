@@ -39,26 +39,22 @@
       ?>
     </div>
     <ol>
-      <li><a href="product_bedding_home.php">이불</a>
+      <li><a href="product_pillow_cover_home.php">PILLOW COVER</a>
         <ol>
-          <li><a href="product_bedding_fabric1.php">fabric별</a></li>
-          <li><a href="product_bedding_small.php">size별</a></li>
-            <ol>
-                <li><a href="product_bedding_small.php">small</a></li>
-                <li><a href="product_bedding_medium.php">medium</a></li>
-                <li><a href="product_bedding_large.php">large</a></li>
-                </ol>
-            </ol>
+          <li><a href="product_pillow_cover_C-501.php">BY FABRIC</a></li>
+          <li><a href="product_pillow_cover_small.php">BY SIZE</a></li>
+        </ol>
       </li>
-      <li><a href="product_pillow_home.php">베개</a></li>
+      <li><a href="product_seat_cushion_home.php">SEAT CUSHION</a></li>
+      <li><a href="product_etc.php">ETC</a></li>
     </ol>
 
-    <h2>이불 - Medium 상품</h2>
+    <h2>PILLOW COVER 전체 상품</h2>
 
     <?php
       $conn = mysqli_connect("localhost", "root", "11111111", "stores");
 
-      $sql = "SELECT * FROM products where form = '이불' and size = 'medium'";
+      $sql = "SELECT * FROM products where form = 'pillow cover'";
       $result = mysqli_query($conn, $sql);
 
       echo "<table>";
@@ -90,5 +86,4 @@
 
   </body>
 </html>
-
 

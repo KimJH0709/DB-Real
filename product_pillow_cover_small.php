@@ -1,21 +1,20 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>STORE</title>
-    </head>
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="utf-8">
+    <title>STORE</title>
+  </head>
+  <link rel = "stylesheet" href = "style.css">
     <div style="background-color: #f2f2f2; padding: 20px;">
         <div align="center">
-            <h1
-                style="font-family: 'Arial Black', sans-serif; font-size: 72px; color: #555555;">
+            <h1 style="font-family: 'Arial Black', sans-serif; font-size: 72px; color: #555555;">
                 <a href="main.php" style="text-decoration: none; color: #555555;">COTTON GALLERY</a>
             </h1>
             <p style="font-family: Arial, sans-serif; font-size: 24px; color: #888888;">The Best Cotton Products</p>
         </div>
     </div>
-    <div align='right'>
-    <?php
+    <div align = 'right'>
+      <?php
         session_start();
         if(isset($_SESSION['user_id'])) {
             $user_id = $_SESSION['user_id'];
@@ -28,9 +27,9 @@
 
             echo "<a href='logout.php' class='btn-login'>로그아웃</a>";
             echo "<span style='margin-left: 10px'></span>";
-            echo "<a href='cart.php' class='btn'>장바구니</a>";        
+            echo "<a href='cart.php' class='btn'>장바구니</a>";
             echo "<span style='margin-left: 10px'></span>";
-            echo "<a href='purchase_check.php' class='btn'>주문확인</a>";
+            echo "<a href='purchase_check.php' class='btn'>주문확인</a>";        
         }
         else {
             echo "<a href='login.php' class='btn-login'>로그인</a>";
@@ -40,23 +39,27 @@
       ?>
     </div>
     <ol>
-        <li>
-            <a href="product_pillow_cover_home.php">PILLOW COVER</a>
-        </li>
-        <li>
-            <a href="product_seat_cushion_home.php">SEAT CUSHION COVER</a>
-        </li>
-        <li>
-            <a href="product_etc.php">ETC</a>
-        </li>
+      <li><a href="product_pillow_cover_home.php">PILLOW COVER</a>
+        <ol>
+          <li><a href="product_pillow_cover_C-501.php">BY FABRIC</a></li>
+          <li><a href="product_pillow_cover_small.php">BY SIZE</a></li>
+            <ol>
+              <li><a href="product_pillow_cover_small.php">SMALL</a></li>
+              <li><a href="product_pillow_cover_medium.php">MEDIUM</a></li>
+              <li><a href="product_pillow_cover_large.php">LARGE</a></li>
+            </ol>
+        </ol>
+      </li>
+      <li><a href="product_seat_cushion_home.php">SEAT CUSHION</a></li>
+      <li><a href="product_etc.php">ETC</a></li>
     </ol>
 
-    <h2>인기상품</h2>
+    <h2>PILLOW COVER (SMALL)</h2>
 
     <?php
       $conn = mysqli_connect("localhost", "root", "11111111", "stores");
 
-      $sql = "SELECT * FROM products";
+      $sql = "SELECT * FROM products where form = 'pillow cover' and size = 'small'";
       $result = mysqli_query($conn, $sql);
 
       echo "<table>";
@@ -73,6 +76,8 @@
         $price = $row['price'];
         $product_image = $row['product_image'];
 
+
+
         echo "<tr>";
         echo "<td><img class='product-image' src='data:image/jpeg;base64," . base64_encode($product_image) . "' alt='상품 이미지'></td>";
         echo "<td class='product-name'>$product_name</td>";
@@ -84,5 +89,6 @@
       echo "</table>";
     ?>
 
-</body>
+  </body>
 </html>
+

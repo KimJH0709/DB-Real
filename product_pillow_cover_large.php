@@ -27,9 +27,9 @@
 
             echo "<a href='logout.php' class='btn-login'>로그아웃</a>";
             echo "<span style='margin-left: 10px'></span>";
-            echo "<a href='cart.php' class='btn'>장바구니</a>"; 
+            echo "<a href='cart.php' class='btn'>장바구니</a>";
             echo "<span style='margin-left: 10px'></span>";
-            echo "<a href='purchase_check.php' class='btn'>주문확인</a>";       
+            echo "<a href='purchase_check.php' class='btn'>주문확인</a>";        
         }
         else {
             echo "<a href='login.php' class='btn-login'>로그인</a>";
@@ -39,26 +39,27 @@
       ?>
     </div>
     <ol>
-      <li><a href="product_bedding_home.php">이불</a>
+      <li><a href="product_pillow_cover_home.php">PILLOW COVER</a>
         <ol>
-          <li><a href="product_bedding_fabric1.php">fabric별</a></li>
+          <li><a href="product_pillow_cover_C-501.php">BY FABRIC</a></li>
+          <li><a href="product_pillow_cover_small.php">BY SIZE</a></li>
             <ol>
-              <li><a href="product_bedding_fabric1.php">fabric1</a></li>
-              <li><a href="product_bedding_fabric2.php">fabric2</a></li>
-              <li><a href="product_bedding_fabric3.php">fabric3</a></li>
+              <li><a href="product_pillow_cover_small.php">SMALL</a></li>
+              <li><a href="product_pillow_cover_medium.php">MEDIUM</a></li>
+              <li><a href="product_pillow_cover_large.php">LARGE</a></li>
             </ol>
-          <li><a href="product_bedding_small.php">size별</a></li>
         </ol>
       </li>
-      <li><a href="product_pillow_home.php">베개</a></li>
+      <li><a href="product_seat_cushion_home.php">SEAT CUSHION</a></li>
+      <li><a href="product_etc.php">ETC</a></li>
     </ol>
 
-    <h2>이불 - Fabric 2 상품</h2>
+    <h2>PILLOW COVER (LARGE)</h2>
 
     <?php
       $conn = mysqli_connect("localhost", "root", "11111111", "stores");
 
-      $sql = "SELECT * FROM products where form = '이불' and fabric_id = 'fabric_id2'";
+      $sql = "SELECT * FROM products where form = 'pillow cover' and size = 'large'";
       $result = mysqli_query($conn, $sql);
 
       echo "<table>";
@@ -90,3 +91,4 @@
 
   </body>
 </html>
+
