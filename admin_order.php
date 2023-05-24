@@ -53,6 +53,7 @@
             $order_id =  $row['order_id'];
             $total_price = $row['total_price'];
             $process = $row['process'];
+            $order_address = $row['order_address'];
             $p = "SELECT * FROM order_sheet WHERE order_id = '$order_id'";
             $presult = mysqli_query($conn, $p);
 
@@ -68,19 +69,21 @@
             echo "<th>상품명</th>";
             echo "<th>개수</th>";
             echo "<th>총 금액</th>";
+            echo "<th>주문 주소</th>";
             echo "<th>주문 진행 상황</th>";
             echo "</tr>";
 
             while($prow = mysqli_fetch_assoc($presult)) {
                 $product_id = $prow['product_id'];
                 $count = $prow['count'];
-
+                
                 echo "<tr>";
                 echo "<td>".$order_id."</td>";
                 echo "<td>".$name."</td>";
                 echo "<td>".$product_id."</td>";
                 echo "<td>".$count."개</td>";
                 echo "<td>".$total_price."원</td>";
+                echo "<td>".$order_address."</td>";
                 echo "<td>";
 
                 echo "<div class = 'order-status'>";

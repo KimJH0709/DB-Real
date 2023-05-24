@@ -47,7 +47,7 @@
             $conn = mysqli_connect("localhost", "root", "11111111", "stores");
 
         $ID = $_SESSION['user_id'];
-
+        
         if(isset($_POST['product_id']) && isset($_POST['count'])) {
             $product_id = $_POST['product_id'];
             $count = $_POST['count'];
@@ -89,13 +89,24 @@
                 $total_price += $tprice;
             }
 
+            
             echo "</table>";
 
             echo "<p style='font-size: 24px; text-align: right;'> 총 합계 금액: ".$total_price."원</p>";
             echo "<p style='font-size: 24px; text-align: center;'> 계정 이름과 동일한 입금자명을 사용해주세요.</p>";
             echo "<p style='font-size: 24px; text-align: center;'> 입금계좌 : 00 은행   계좌번호 : 0000-00-000000</p>";
 
+            $user_query = "SELECT address FROM user WHERE ID='$ID'";
+            $user_result = mysqli_query($conn, $user_query);
+            $user_row = mysqli_fetch_assoc($user_result);
+            $user_address = $user_row['address'];
+
             echo "<form method='post' action='purchase_process.php'>";
+            echo "<div align='center'>";
+            echo "<label for='address' style='font-size: 24px; margin-bottom: 10px;'>주소</label><br>";
+            echo "<input type='text' name='order_address' id='order_address' value = '$user_address' style='font-size: 16px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; width: 300px;'>";
+            echo "</div>";
+            echo "<br>";
             echo "<input type='hidden' name='ID' value='$ID'>";
             echo "<input type='hidden' name='total_price' value='$total_price'>";
             echo "<button class = 'purchase-btn' button type='submit'>입금확인 요청</button>";
@@ -110,3 +121,4 @@
 
 <p style='font-size: 11px; text-align: center;'> 배승옥 코튼 갤러리</p>
 <p style='font-size: 11px; text-align: center;'> 주소 : 전북 전주시 완산구 유연로 348-4 <span style='margin-left: 40px'></span> 전화번호 : 063-283-1191</p>
+

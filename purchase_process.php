@@ -7,8 +7,8 @@
         $ID = $_SESSION['user_id'];
         $product_id = $_POST['product_id'];
         $total_price = $_POST['total_price'];
-
-        $q = "INSERT INTO order_queue (ID, total_price, process) VALUES ('$ID', '$total_price', '입금확인중')";
+        $order_address = $_POST['order_address'];
+        $q = "INSERT INTO order_queue (ID, total_price, order_address, process) VALUES ('$ID', '$total_price', '$order_address', '입금확인중')";
         $result = mysqli_query($conn, $q);
 
         $q = "SELECT * FROM order_queue where ID = '$ID' and total_price = $total_price";
@@ -21,7 +21,7 @@
 
         while ($row = mysqli_fetch_assoc($result)) {
             $count = $row['count'];
-            $q = "INSERT INTO order_sheet (ID, product_id, count, order_id) VALUES ('$ID', '".$row['product_id']."', '$count', '$order_id')";
+            $q = "INSERT INTO order_sheet (ID, product_id, count, order_id, order_address) VALUES ('$ID', '".$row['product_id']."', '$count', '$order_id', '$order_address')";
             mysqli_query($conn, $q);
         }
 

@@ -54,6 +54,7 @@
         while ($row = mysqli_fetch_assoc($result)) {
             $order_id =  $row['order_id'];
             $total_price = $row['total_price'];
+            $order_address = $row['order_address'];
             $process = $row['process'];
             $p = "SELECT * FROM order_sheet WHERE order_id = '$order_id'";
             $presult = mysqli_query($conn, $p);
@@ -64,6 +65,7 @@
             echo "<th>상품명</th>";
             echo "<th>개수</th>";
             echo "<th>총 금액</th>";
+            echo "<th>주소</th>";
             echo "<th>주문 진행 상황</th>";
             echo "</tr>";
 
@@ -76,6 +78,7 @@
                 echo "<td>".$product_id."</td>";
                 echo "<td>".$count."개</td>";
                 echo "<td>".$total_price."원</td>";
+                echo "<td>".$order_address."</td>";
                 echo "<td>".$process."</td>";
                 echo "<td>";
                 echo "</td>";
