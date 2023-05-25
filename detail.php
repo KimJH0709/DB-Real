@@ -28,7 +28,9 @@
 
             echo "<a href='logout.php' class='btn-login'>로그아웃</a>";
             echo "<span style='margin-left: 10px'></span>";
-            echo "<a href='cart.php' class='btn'>장바구니</a>";        
+            echo "<a href='cart.php' class='btn'>장바구니</a>";      
+            echo "<span style='margin-left: 10px'></span>";
+            echo "<a href='purchase_check.php' class='btn'>주문확인</a>";  
         }
         else {
             echo "<a href='login.php' class='btn-login'>로그인</a>";
@@ -38,8 +40,10 @@
       ?>
     </div>
     <ol>
-      <li><a href="product_bedding_home.php">이불</a></li>
-      <li><a href="product_pillow_home.php">베개</a></li>
+      <li><a href="product_pillow_cover_home.php">PILLOW COVER</a></li>
+      <li><a href="product_seat_cushion_home.php">SEAT CUSHION</a></li>
+      <li><a href="product_etc.php">ETC</a></li>
+
     </ol>
 
     <div align = 'center'>
@@ -68,10 +72,121 @@
             echo "<form method='post' action='cart_insert_process.php'><input type='hidden' name='product_id' value='$product_id'><button class='btn' type='submit'>장바구니</button></form><br>";
         }
 
+        if(isset($_SESSION['user_id'])) {
+
+          $user_id = $_SESSION['user_id'];
+          echo "<h3>한줄 리뷰 작성</h3>";
+          echo "<form method='post' onsubmit='submitReview(event)'>";
+          echo "<textarea id='review' name='review' rows='4' cols='50' placeholder='리뷰를 작성해주세요'></textarea><br>";
+          echo "<input type='number' id='score' name='score' min='1' max='5' style='width: 67px;' placeholder='평점(1-5)'><br>";
+          echo "<input type='hidden' id='product_id' name='product_id' value='$product_id'>";
+          echo "<input type='hidden' id='user_id' name='user_id' value='$user_id'>";
+          echo "<br><button type='submit' name='submit_review' class = 'btn'>리뷰 제출</button>";
+          echo "</form>";
+        }
+
+
+        $sql = "SELECT * FROM product_review WHERE product_id = '$product_id'";
+        $result = mysqli_query($conn, $sql);
+
+        echo "<h1>리뷰 목록</h1>";
+
+        echo "<table>";
+        echo "<tr>";
+        echo "<th>이름</th>";
+        echo "<th>평점</th>";
+        echo "<th>리뷰</th>";
+        echo "<th>삭제</th>";
+        echo "</tr>";
+        while ($row = mysqli_fetch_assoc($result)) {
+            $user_id = $row['user_id'];
+            $review = $row['review'];
+            $score = $row['score'];
+
+            $user_sql = "SELECT name FROM user WHERE ID = '$user_id'";
+            $user_result = mysqli_query($conn, $user_sql);
+            $user_row = mysqli_fetch_assoc($user_result);
+            $user_name = $user_row['name'];
+    
+            echo "<tr>";
+            echo "<td>$user_name</td>";
+            echo "<td>$score</td>";
+            echo "<td>$review</td>";
+            echo "<td><button onclick=\"deleteReview('$user_id', '$product_id')\">삭제</button></td>";
+            echo "</tr>";
+
+        }
+        echo "</table>";
+
         ?>
     </div>
 
   </body>
+  <script>
+    function submitReview(event) {
+      event.preventDefault();
+
+      var review = document.getElementById('review').value;
+      var score = document.getElementById('score').value;
+      var product_id = document.getElementById('product_id').value;
+      var user_id = document.getElementById('user_id').value;
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'review_process.php', true);
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            alert('리뷰가 제출되었습니다.');
+            location.reload();
+          } else {
+            alert('작성된 리뷰가 있습니다.');
+          }
+        }
+      };
+
+      // 데이터 전송
+      var data = 'review=' + encodeURIComponent(review) + '&score=' + encodeURIComponent(score) + '&product_id=' + encodeURIComponent(product_id) + '&user_id=' + encodeURIComponent(user_id);
+      xhr.send(data);
+    }
+
+
+
+    function deleteReview(userId, productId) {
+    <?php
+    if (isset($_SESSION['user_id'])) {
+        $currentUserId = $_SESSION['user_id'];
+        echo "if ('$currentUserId' !== userId) {";
+        echo "  alert('다른 사용자의 리뷰는 삭제할 수 없습니다.');";
+        echo "  return;";
+        echo "}";
+    } else {
+        echo "alert('로그인이 필요합니다.');";
+        echo "return;";
+    }
+    ?>
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'delete_review.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                alert('리뷰가 삭제되었습니다.');
+                location.reload(); // 페이지 새로고침
+            } else {
+                alert('리뷰 삭제에 실패했습니다.');
+            }
+        }
+    };
+
+    // 데이터 전송
+    var data = 'user_id=' + encodeURIComponent(userId) + '&product_id=' + encodeURIComponent(productId);
+    xhr.send(data);
+  }
+  </script>
   <p style='font-size: 11px; text-align: center;'> 배승옥 코튼 갤러리</p>
   <p style='font-size: 11px; text-align: center;'> 주소 : 전북 전주시 완산구 유연로 348-4 <span style='margin-left: 40px'></span> 전화번호 : 063-283-1191</p>
 </html>
@@ -86,5 +201,15 @@
     
     font-size: 25px;
     margin-bottom: 10px;
+  }
+  table {
+        border-collapse: collapse;
+        width: 70%;
+    }
+
+  th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
   }
 </style>
