@@ -44,9 +44,9 @@
         <ol>
             <li><a href="product_seat_cushion_C-501.php">BY FABRIC</a></li>
                 <ol>
+                    <li><a href="product_seat_cushion_B-1000.php">B-1000</a></li>
                     <li><a href="product_seat_cushion_C-501.php">C-501</a></li>
-                    <li><a href="product_seat_cushion_C-502.php">C-502</a></li>
-                    <li><a href="product_seat_cushion_C-503.php">C-503</a></li>
+                    <li><a href="product_seat_cushion_C-605.php">C-605</a></li>
                 </ol>
             <li><a href="product_seat_cushion_small.php">BY SIZE</a></li>
         </ol>

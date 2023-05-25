@@ -42,7 +42,7 @@
       <li><a href="product_pillow_cover_home.php">PILLOW COVER</a></li>
       <li><a href="product_seat_cushion_home.php">SEAT CUSHION</a>
         <ol>
-            <li><a href="product_seat_cushion_C-501.php">BY FABRIC</a></li>
+            <li><a href="product_seat_cushion_B-1000.php">BY FABRIC</a></li>
             <li><a href="product_seat_cushion_small.php">BY SIZE</a>
                 <ol>
                     <li><a href="product_seat_cushion_small.php">SMALL</a></li>

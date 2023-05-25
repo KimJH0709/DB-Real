@@ -39,27 +39,27 @@
       ?>
     </div>
     <ol>
-      <li><a href="product_pillow_cover_home.php">PILLOW COVER</a></li>
-      <li><a href="product_seat_cushion_home.php">SEAT CUSHION</a>
+      <li><a href="product_pillow_cover_home.php">PILLOW COVER</a>
         <ol>
-            <li><a href="product_seat_cushion_C-501.php">BY FABRIC</a></li>
-                <ol>
-                <li><a href="product_seat_cushion_C-501.php">C-501</a></li>
-                <li><a href="product_seat_cushion_C-502.php">C-502</a></li>
-                <li><a href="product_seat_cushion_C-503.php">C-503</a></li>
-                </ol>
-            <li><a href="product_seat_cushion_small.php">BY SIZE</a></li>
+          <li><a href="product_pillow_cover_B-1000.php">BY FABRIC</a></li>
+            <ol>
+              <li><a href="product_pillow_cover_B-1000.php">B-1000</a></li>
+              <li><a href="product_pillow_cover_C-501.php">C-501</a></li>
+              <li><a href="product_pillow_cover_C-605.php">C-605</a></li>
+            </ol>
+          <li><a href="product_pillow_cover_small.php">BY SIZE</a></li>
         </ol>
-        </li>
+      </li>
+      <li><a href="product_seat_cushion_home.php">SEAT CUSHION</a></li>
       <li><a href="product_etc.php">ETC</a></li>
     </ol>
 
-    <h2>SEAT CUSHION COVER (C-502)</h2>
+    <h2>PILLOW COVER (C-605)</h2>
 
     <?php
       $conn = mysqli_connect("localhost", "root", "11111111", "stores");
 
-      $sql = "SELECT * FROM products where form = 'seat cushion cover' and fabric_id = 'C-502'";
+      $sql = "SELECT * FROM products where form = 'pillow cover' and fabric_id = 'C-605'";
       $result = mysqli_query($conn, $sql);
 
       echo "<table>";

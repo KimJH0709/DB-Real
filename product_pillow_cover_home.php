@@ -41,7 +41,7 @@
     <ol>
       <li><a href="product_pillow_cover_home.php">PILLOW COVER</a>
         <ol>
-          <li><a href="product_pillow_cover_C-501.php">BY FABRIC</a></li>
+          <li><a href="product_pillow_cover_B-1000.php">BY FABRIC</a></li>
           <li><a href="product_pillow_cover_small.php">BY SIZE</a></li>
         </ol>
       </li>
