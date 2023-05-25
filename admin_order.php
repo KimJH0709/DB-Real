@@ -24,6 +24,8 @@
         <a href = 'admin_insert.php'class = 'btn-login'> INSERT </a>
         <span style='margin-left: 20px'></span>
         <a href = 'admin_order.php'class = 'btn-login'> 주문확인 </a>
+        <span style='margin-left: 20px'></span>
+        <a href = 'admin_user_info.php'class = 'btn-login'> 유저관리 </a>
     </div>
 
     <?php
