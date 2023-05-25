@@ -32,40 +32,43 @@
         <?php
           $conn = mysqli_connect("localhost", "root", "11111111", "stores");
 
-          $sql = "SELECT * FROM products";
+          $sql = "SELECT * FROM user";
           $result = mysqli_query($conn, $sql);
 
           echo "<table>";
           echo "<tr>";
-          echo "<th>이미지</th>";
-          echo "<th>상품명</th>";
-          echo "<th>가격</th>";
-          echo "<th>업데이트</th>";
+          echo "<th>ID</th>";
+          echo "<th>user_id</th>";
+          echo "<th>user_pw</th>";
+          echo "<th>name</th>";
+          echo "<th>address</th>";
+          echo "<th>phone_number</th>";
           echo "<th>삭제</th>";
           echo "</tr>";
           while ($row = mysqli_fetch_assoc($result)) {
 
-            $product_id = $row['product_id'];
-            $product_name = $row['product_name'];
-            $price = $row['price'];
-            $product_image = $row['product_image'];
-            echo "<tr>";
-            echo "<td><img src='data:image/jpeg;base64," . base64_encode($product_image) . "' alt='상품 이미지' width='200'></td>";
-            echo "<td class='product-name'>$product_name</td>";
-            echo "<td class='product-price'>$price 원</td>";
-            echo "<td>";
-            echo "<form method='post' action='admin_update.php'>";
-            echo "<input type='hidden' name='product_id' value='$product_id'>";
-            echo "<button class='btn' button type='submit'>UPDATE</button>";
-            echo "</form>";
-            echo "</td>";
-            echo "<td>";
-            echo "<form method='post' action='admin_delete_process.php'>";
-            echo "<input type='hidden' name='product_id' value='$product_id'>";
-            echo "<button class='btn' button type='submit'>DELETE</button>";
-            echo "</form>";
-            echo "</td>";
-            echo "</tr>";
+            if ($row['ID'] != 1){
+              $ID = $row['ID'];
+              $user_id = $row['user_id'];
+              $user_pw = $row['user_pw'];
+              $name = $row['name'];
+              $address = $row['address'];
+              $phone_number = $row['phone_number'];
+              echo "<tr>";
+              echo "<td class='product-name'>$ID</td>";
+              echo "<td class='product-name'>$user_id</td>";
+              echo "<td class='product-name'>$user_pw</td>";
+              echo "<td class='product-name'>$name</td>";
+              echo "<td class='product-name'>$address</td>";
+              echo "<td class='product-name'>$phone_number</td>";
+              echo "<td>";
+              echo "<form method='post' action='admin_user_delete_process.php'>";
+              echo "<input type='hidden' name='ID' value='$ID'>";
+              echo "<button class='btn' button type='submit'>DELETE</button>";
+              echo "</form>";
+              echo "</td>";
+              echo "</tr>";
+            }
           }
           echo "</table>";
         ?>
