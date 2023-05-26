@@ -21,7 +21,7 @@
 
         while ($row = mysqli_fetch_assoc($result)) {
             $count = $row['count'];
-            $q = "INSERT INTO order_sheet (ID, product_id, count, order_id, order_address) VALUES ('$ID', '".$row['product_id']."', '$count', '$order_id', '$order_address')";
+            $q = "INSERT INTO order_sheet (ID, product_id, count, order_id, order_address, process) VALUES ('$ID', '".$row['product_id']."', '$count', '$order_id', '$order_address', '입금확인중')";
             mysqli_query($conn, $q);
         }
 
