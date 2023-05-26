@@ -40,7 +40,13 @@
             $result = mysqli_query($conn, $q);
 
             if ($result) {
-                echo "<script>alert('주문 상태가 변경되었습니다.')</script>";
+                $p = "UPDATE order_sheet SET process = '$process' WHERE order_id = '$order_id'";
+                $presult = mysqli_query($conn, $p);
+                if ($presult){
+                    echo "<script>alert('주문 상태가 변경되었습니다.')</script>";
+                } else{
+                    echo "<script>alert('주문 상태 변경에 실패하였습니다.')</script>";
+                }
             } else {
                 echo "<script>alert('주문 상태 변경에 실패하였습니다.')</script>";
             }
@@ -91,14 +97,18 @@
                 echo "<div class = 'order-status'>";
                 echo "<form method='post' action='".$_SERVER['PHP_SELF']."'>";
                 echo "<input type='hidden' name='order_id' value='".$order_id."'>";
-                echo "<select name='process' class = 'order-status-select'>";
+                echo "<select name='process' class='order-status-select' " . ($process == '배송완료' ? 'disabled' : '') . ">";
                 echo "<option value='입금확인중' ".($process == '입금확인중' ? 'selected' : '').">입금확인중</option>";
                 echo "<option value='입금확인완료' ".($process == '입금확인완료' ? 'selected' : '').">입금확인완료</option>";
                 echo "<option value='배송중' ".($process == '배송중' ? 'selected' : '').">배송중</option>";
                 echo "<option value='배송완료' ".($process == '배송완료' ? 'selected' : '').">배송완료</option>";
                 echo "</select>";
-                echo "<input type='submit' name='submit' value='변경' class = 'order-status-submit'>";
+                if ($process != '배송완료'){
+                    echo "<input type='submit' name='submit' value='변경' class = 'order-status-submit'>";
+                }
                 echo "</form>";
+
+                
                 echo "</div>";
 
                 echo "</td>";

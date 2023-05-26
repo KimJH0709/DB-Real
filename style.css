@@ -241,3 +241,7 @@ margin: 20px;
     color: red;
     margin-top: 20px;
 }
+.order-status-submit:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+  }

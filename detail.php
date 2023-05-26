@@ -62,27 +62,50 @@
             $product_image = $row['product_image'];
             
 
-            echo "<img class='product-image' src='data:image/jpeg;base64," . base64_encode($product_image) . "' alt='상품 이미지'><br>";
-            echo "<div class='product-info'>제품 ID: $product_id</div>";
-            echo "<div class='product-info'>재질: $fabric_id</div>";
-            echo "<div class='product-info'>제품 이름: $product_name</div>";
-            echo "<div class='product-info'>종류: $form</div>";
-            echo "<div class='product-info'>사이즈: $size</div>";
-            echo "<div class='product-info'>가격: $price 원</div>";
+            $ssql = "SELECT * FROM fabric WHERE fabric_id = '$fabric_id'";
+            $sresult = mysqli_query($conn, $ssql);
+            $srow = mysqli_fetch_assoc($sresult);
+            $material = $srow['material'];
+            $producer = $srow['producer'];
+            $count_of_yarn = $srow['count_of_yarn'];
+            
+            echo "<img class='product-image' src='data:image/jpeg;base64," . base64_encode($product_image) . "' alt='상품 이미지'>";
+
+            echo "<table>";
+            echo "<tr><td><div class='product-info'>제품 이름</div></td><td><div class='product-info'>$product_name</div></td></tr>";
+            echo "<tr><td><div class='product-info'>종류</div></td><td><div class='product-info'>$form</div></td></tr>";
+            echo "<tr><td><div class='product-info'>사이즈</div></td><td><div class='product-info'>$size</div></td></tr>";
+            echo "<tr><td><div class='product-info'>재질</div></td><td><div class='product-info'>$material</div></td></tr>";
+            echo "<tr><td><div class='product-info'>섬유 수</div></td><td><div class='product-info'>$count_of_yarn 수</div></td></tr>";
+            echo "<tr><td><div class='product-info'>제작자</div></td><td><div class='product-info'>$producer</div></td></tr>";
+            echo "<tr><td><div class='product-info'>가격</div></td><td><div class='product-info'>$price 원</div></td></tr>";
+
+            echo "</table>";
+
+
             echo "<form method='post' action='cart_insert_process.php'><input type='hidden' name='product_id' value='$product_id'><button class='btn' type='submit'>장바구니</button></form><br>";
         }
 
         if(isset($_SESSION['user_id'])) {
 
           $user_id = $_SESSION['user_id'];
-          echo "<h3>한줄 리뷰 작성</h3>";
-          echo "<form method='post' onsubmit='submitReview(event)'>";
-          echo "<textarea id='review' name='review' rows='4' cols='50' placeholder='리뷰를 작성해주세요'></textarea><br>";
-          echo "<input type='number' id='score' name='score' min='1' max='5' style='width: 67px;' placeholder='평점(1-5)'><br>";
-          echo "<input type='hidden' id='product_id' name='product_id' value='$product_id'>";
-          echo "<input type='hidden' id='user_id' name='user_id' value='$user_id'>";
-          echo "<br><button type='submit' name='submit_review' class = 'btn'>리뷰 제출</button>";
-          echo "</form>";
+          $sql = "SELECT * FROM order_sheet WHERE ID = '$user_id' AND product_id = '$product_id'";
+          $result = mysqli_query($conn, $sql);
+          $row = mysqli_fetch_assoc($result);
+          $process = $row['process'];
+          if ($process == '배송완료'){
+            echo "<h3>한줄 리뷰 작성</h3>";
+            echo "<form method='post' onsubmit='submitReview(event)'>";
+            echo "<textarea id='review' name='review' rows='4' cols='50' placeholder='리뷰를 작성해주세요'></textarea><br>";
+            echo "<input type='number' id='score' name='score' min='1' max='5' style='width: 67px;' placeholder='평점(1-5)'><br>";
+            echo "<input type='hidden' id='product_id' name='product_id' value='$product_id'>";
+            echo "<input type='hidden' id='user_id' name='user_id' value='$user_id'>";
+            echo "<br><button type='submit' name='submit_review' class = 'btn'>리뷰 제출</button>";
+            echo "</form>";
+          }
+          else {
+            echo "주문 후 리뷰 작성이 가능합니다.";
+          }
         }
 
 
