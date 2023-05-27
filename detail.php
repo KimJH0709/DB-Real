@@ -41,7 +41,7 @@
     </div>
     <ol>
       <li><a href="product_pillow_cover_home.php">PILLOW COVER</a></li>
-      <li><a href="product_seat_cushion_home.php">SEAT CUSHION</a></li>
+      <li><a href="product_seat_cushion_home.php">SEAT CUSHION COVER</a></li>
       <li><a href="product_etc.php">ETC</a></li>
 
     </ol>
